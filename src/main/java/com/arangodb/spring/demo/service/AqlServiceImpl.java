@@ -23,7 +23,7 @@ public class AqlServiceImpl implements  AqlService {
         filter ci.content['ci_name']=='first'
         return ci
        */
-        String aql=String.format("FOR ci in  Characters  filter ci.content['%s']=='%s'  return ci ","ci_name","first");
+        String aql=String.format("FOR ci in  Characters  filter ci.content['%s']=='%s'  sort ci.update_time desc limit %d,%d return ci   ","ci_name","first",0,10);
         ArangoCursor<Character> query = arangoOperations.query(aql, Character.class);
         List<Character> characters = query.asListRemaining();
         characters.forEach(s-> System.out.println(s));
