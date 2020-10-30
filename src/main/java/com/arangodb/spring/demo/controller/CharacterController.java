@@ -1,10 +1,11 @@
 package com.arangodb.spring.demo.controller;
 
+import com.arangodb.spring.demo.entity.Character;
+import com.arangodb.spring.demo.service.AqlService;
 import com.arangodb.spring.demo.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import  com.arangodb.spring.demo.entity.Character;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashSet;
@@ -16,6 +17,9 @@ public class CharacterController {
 
   @Autowired
     private CharacterService characterService;
+
+  @Autowired
+  private AqlService aqlService;
 
   @RequestMapping("/test")
   @ResponseBody
@@ -31,5 +35,11 @@ public class CharacterController {
    return  i;
   }
 
+  @RequestMapping("/testAql")
+  @ResponseBody
+    public  String  result(){
+      aqlService.getList();
+      return "success";
+  }
 
 }
