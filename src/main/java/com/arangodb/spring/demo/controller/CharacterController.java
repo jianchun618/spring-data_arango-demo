@@ -1,22 +1,29 @@
 package com.arangodb.spring.demo.controller;
 
+import com.arangodb.spring.demo.bean.PageVo;
 import com.arangodb.spring.demo.entity.Character;
 import com.arangodb.spring.demo.service.AqlService;
 import com.arangodb.spring.demo.service.CharacterService;
+import com.arangodb.spring.demo.service.CharactersVoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/one")
 public class CharacterController {
 
   @Autowired
     private CharacterService characterService;
+
+  @Autowired
+  private CharactersVoService charactersVoService;
 
   @Autowired
   private AqlService aqlService;
@@ -42,4 +49,20 @@ public class CharacterController {
       return "success";
   }
 
+
+  @RequestMapping("/pageSelect")
+  @ResponseBody
+    public  String  selectPage(@RequestBody PageVo pageVo){
+
+     // PageVo pageVo = new PageVo(pageNum, pafeSize);
+      List<com.arangodb.spring.demo.bean.Character> list = charactersVoService.getList(pageVo);
+      return  "success";
+  }
+
+  @RequestMapping("two")
+  @ResponseBody
+    public  String  testPath(){
+
+      return  "success";
+  }
 }

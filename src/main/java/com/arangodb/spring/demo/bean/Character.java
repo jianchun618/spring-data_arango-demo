@@ -22,6 +22,14 @@ public class Character {
 
     private Map<String,Object> content;
 
-
-
+    @Override
+    public String toString() {
+        return "Character{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", alive=" + alive +
+                ", traits=" + traits +
+                ", content=" + content +
+                '}';
+    }
 }

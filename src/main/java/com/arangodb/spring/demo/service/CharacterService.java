@@ -7,4 +7,6 @@ import java.util.Set;
 public interface CharacterService {
 
     int batchInsert(Set <Character> list);
+
+
 }

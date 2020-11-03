@@ -20,20 +20,15 @@
 
 package com.arangodb.spring.demo.repository;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-
-import org.springframework.data.repository.query.Param;
-
 import com.arangodb.ArangoCursor;
 import com.arangodb.spring.demo.entity.Character;
 import com.arangodb.springframework.annotation.BindVars;
 import com.arangodb.springframework.annotation.Query;
 import com.arangodb.springframework.annotation.QueryOptions;
 import com.arangodb.springframework.repository.ArangoRepository;
+import org.springframework.data.repository.query.Param;
+
+import java.util.*;
 
 /**
  * @author Mark Vollmary
@@ -73,5 +68,6 @@ public interface CharacterRepository extends ArangoRepository<Character, String>
 
 	@Query("FOR v IN 1..2 INBOUND @id @@edgeCol SORT v.age DESC RETURN DISTINCT v")
 	Set<Character> getAllChildsAndGrandchilds(@Param("id") String id, @Param("@edgeCol") Class<?> edgeCollection);
+
 
 }
