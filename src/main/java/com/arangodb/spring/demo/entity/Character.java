@@ -32,7 +32,7 @@ import com.arangodb.springframework.annotation.Relations;
  * @author Mark Vollmary
  *
  */
-@Document("characters")
+@Document("Characters")
 @HashIndex(fields = { "name", "surname" }, unique = true)
 public class Character {
 
